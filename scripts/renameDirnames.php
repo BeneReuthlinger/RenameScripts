@@ -86,7 +86,8 @@
 						}
 						else
 						{
-							file_put_contents($errlog, $file . "\n", FILE_APPEND);
+							if (!str_contains(file_get_contents($errlog), $file))
+								file_put_contents($errlog, $file . "\n", FILE_APPEND);
 						}
 					}
 					

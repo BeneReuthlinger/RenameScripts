@@ -1,6 +1,6 @@
 <?php
   
-  $mydir = 'U:\xxx\unsortiert';
+  $mydir = 'T:\MP3\_unsortiert';
   $dryrun = true;
   
   while (true)

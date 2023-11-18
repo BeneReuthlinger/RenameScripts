@@ -16,8 +16,8 @@
 	elseif (DIRECTORY_SEPARATOR === '/')
 		$mydir = str_replace('\\', '/', $mydir);
 	
-	if ($maxlen < 6)
-		exit('$maxlen must be at least 6 chars');
+	if ($maxlen < 20)
+		exit('$maxlen must be at least 20 chars');
 	
 	file_put_contents($errlog, "");
 	
@@ -51,11 +51,22 @@
 					$nlastdir = preg_replace('/ {1,}/ui', ' ', $nlastdir);
 				
 				$nlastdir = trim($nlastdir);
-				
-				$new = $predir . DIRECTORY_SEPARATOR . $nlastdir;
+				$new      = $predir . DIRECTORY_SEPARATOR . $nlastdir;
 				
 				if ($file !== $new)
 				{
+					// Wenn dir schon vorhanden, dann Nummer anhängen
+					if (is_dir($new))
+					{
+						for ($i = 1; $i < 10; $i++)
+						{
+							$nlastdir = substr($nlastdir, 0, strlen($nlastdir) - 1) . $i;
+							$new      = $predir . DIRECTORY_SEPARATOR . $nlastdir;
+							if (!is_dir($new))
+								break;
+						}
+					}
+					
 					echo $file . "\n";
 					echo '--> ' . $new . "\n";
 					

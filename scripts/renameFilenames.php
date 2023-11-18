@@ -16,8 +16,8 @@
 	elseif (DIRECTORY_SEPARATOR === '/')
 		$mydir = str_replace('\\', '/', $mydir);
 	
-	if ($maxlen < 6)
-		exit('$maxlen must be at least 6 chars');
+	if ($maxlen < 20)
+		exit('$maxlen must be at least 20 chars');
 	
 	file_put_contents($errlog, "");
 	
@@ -35,7 +35,7 @@
 			$basename  = $pi['basename'];
 			$extension = $pi['extension'];
 			
-			if (empty($extension) || strlen($extension) > 10 || (strlen($extension) > 3 && $maxlen <= 10))
+			if (empty($extension) || strlen($extension) > 10)
 			{
 				$nfilename = substr($basename, 0, $maxlen);
 			}

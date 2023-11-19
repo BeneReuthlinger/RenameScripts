@@ -51,6 +51,10 @@
 					$nlastdir = preg_replace('/ {1,}/ui', ' ', $nlastdir);
 				
 				$nlastdir = trim($nlastdir);
+				$nlastdir = trim($nlastdir, '.');
+				$nlastdir = trim($nlastdir, '-');
+				$nlastdir = trim($nlastdir, '_');
+				$nlastdir = trim($nlastdir, ',');
 				$new      = $predir . DIRECTORY_SEPARATOR . $nlastdir;
 				
 				if ($file !== $new)

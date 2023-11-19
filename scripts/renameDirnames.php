@@ -52,7 +52,11 @@
 				
 				$nlastdir = trim($nlastdir, ' .-_,');
 				$nlastdir = trim($nlastdir);
-				$new      = $predir . DIRECTORY_SEPARATOR . $nlastdir;
+				
+				if (empty($nlastdir))
+					$nlastdir = substr(md5(microtime()), 0, 10);
+				
+				$new = $predir . DIRECTORY_SEPARATOR . $nlastdir;
 				
 				if ($file !== $new)
 				{

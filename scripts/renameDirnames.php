@@ -53,7 +53,7 @@
 				$nlastdir = trim($nlastdir, ' .-_,');
 				$nlastdir = trim($nlastdir);
 				
-				if (empty($nlastdir))
+				if ($nlastdir == "")
 					$nlastdir = substr(md5(microtime()), 0, 10);
 				
 				$new = $predir . DIRECTORY_SEPARATOR . $nlastdir;

@@ -37,16 +37,17 @@
 			
 			if (empty($extension) || strlen($extension) > 10)
 			{
-				$nfilename = substr($basename, 0, $maxlen);
+				$nfilename = mb_substr($basename, 0, $maxlen);
 			}
 			else
 			{
 				$nfilename = preg_replace('/\.' . preg_quote($extension, '/') . '$/', '', $basename);
-				$nfilename = substr($nfilename, 0, $maxlen - strlen($extension) - 1);
+				$nfilename = mb_substr($nfilename, 0, $maxlen - strlen($extension) - 1);
 				$nfilename = $nfilename . '.' . $extension;
 			}
 			
-			$nfilename = preg_replace('/[^äöüÄÖÜa-zA-Z0-9-_., ]/ui', '_', $nfilename);
+			$nfilename = trim($nfilename);
+			$nfilename = preg_replace('/[^äöüÄÖÜa-zA-Z0-9&-_., ]/ui', '_', $nfilename);
 			$nfilename = preg_replace('/ {1,}/ui', ' ', $nfilename);
 			
 			$new = $dirname . DIRECTORY_SEPARATOR . $nfilename;

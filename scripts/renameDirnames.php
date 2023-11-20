@@ -44,8 +44,9 @@
 				$predir = implode(DIRECTORY_SEPARATOR, $dirsplit);
 				$predir = rtrim($predir, DIRECTORY_SEPARATOR);
 				
-				$nlastdir = substr($lastdir, 0, $maxlen);
-				$nlastdir = preg_replace('/[^äöüÄÖÜa-zA-Z0-9-_., ]/ui', '_', $nlastdir);
+				$nlastdir = mb_substr($lastdir, 0, $maxlen);
+				$nlastdir = trim($nlastdir);
+				$nlastdir = preg_replace('/[^äöüÄÖÜa-zA-Z0-9&-_., ]/ui', '_', $nlastdir);
 				
 				if (preg_match('/  /ui', $nlastdir))
 					$nlastdir = preg_replace('/ {1,}/ui', ' ', $nlastdir);
@@ -53,7 +54,7 @@
 				$nlastdir = trim($nlastdir, ' .-_,');
 				$nlastdir = trim($nlastdir);
 				
-				if ($nlastdir == "")
+				if (empty($nlastdir))
 					$nlastdir = substr(md5(microtime()), 0, 10);
 				
 				$new = $predir . DIRECTORY_SEPARATOR . $nlastdir;

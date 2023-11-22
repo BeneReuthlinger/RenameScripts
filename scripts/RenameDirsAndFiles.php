@@ -106,7 +106,7 @@
 						$nlastdir = preg_replace('/[^äöüÄÖÜa-zA-Z0-9&\-_., ]/ui', '_', $nlastdir);
 						
 						if (preg_match('/ {2}/ui', $nlastdir))
-							$nlastdir = preg_replace('/ {1,}/ui', ' ', $nlastdir);
+							$nlastdir = preg_replace('/ +/ui', ' ', $nlastdir);
 						
 						$nlastdir = trim($nlastdir, ' .-_,');
 						$nlastdir = trim($nlastdir);
@@ -202,7 +202,7 @@
 					
 					$nfilename = trim($nfilename);
 					$nfilename = preg_replace('/[^äöüÄÖÜa-zA-Z0-9&\-_., ]/ui', '_', $nfilename);
-					$nfilename = preg_replace('/ {1,}/ui', ' ', $nfilename);
+					$nfilename = preg_replace('/ +/ui', ' ', $nfilename);
 					
 					$new = $dirname . DIRECTORY_SEPARATOR . $nfilename;
 					

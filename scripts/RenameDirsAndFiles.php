@@ -74,7 +74,7 @@
 		public function startRenameDirs(): void
 		{
 			$mydir  = $this->mydir;
-			$maxlen = $this->files_maxlen;
+			$maxlen = $this->dirs_maxlen;
 			$dryrun = $this->dryrun;
 			$errlog = $this->errlog;
 			
@@ -187,7 +187,9 @@
 					$pi        = pathinfo($file);
 					$dirname   = rtrim($pi['dirname'], DIRECTORY_SEPARATOR);
 					$basename  = $pi['basename'];
-					$extension = $pi['extension'];
+					$extension = "";
+					if (isset($pi['extension']))
+						$extension = $pi['extension'];
 					
 					if (empty($extension) || strlen($extension) > 10)
 					{
